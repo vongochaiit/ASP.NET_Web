@@ -1,0 +1,58 @@
+﻿@model BlueShop.Models.Shop
+
+@{
+    ViewBag.Title = "Details";
+}
+<br />
+<h2 style="text-align:center">Chi tiết Cửa Hàng</h2>
+<br />
+<table class="table table-bordered" style="text-align:center;">
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <tr>
+        <th>
+            Tên shop
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Tỉnh thành
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.NameShop)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.City.NameCity)
+        </td>
+    </tr>
+
+</table>
+<br />
+<p>
+    @if (Session["Role"].ToString() == "1")
+    {
+        <div style="float:left">
+            <button type="button" class="btn btn-outline-danger">@Html.ActionLink("Thêm sản phẩm mới", "CreateProduct", new { id = Model.ShopID })</button>
+        </div>
+        @*@Html.ActionLink("Thêm sản phẩm mới", "CreateProduct", new { id = Model.ShopID })*@
+    }
+    <div style="float:left"><button type="button" class="btn btn-outline-danger"> @Html.ActionLink("Danh sách sản phẩm hiện có", "IndexProduct", new { id = Model.ShopID })</button></div>
+    <div style="float:left"><button type="button" class="btn btn-outline-danger">@Html.ActionLink("Danh sách đặt hàng", "IndexOredr", new { id = Model.ShopID })</button></div>
+  
+
+    @*<div>
+            @Html.ActionLink("Danh sách sản phẩm hiện có", "IndexProduct", new { id = Model.ShopID })
+        </div>*@
+    @*<div>
+            @Html.ActionLink("Danh sách đặt hàng", "IndexOredr", new { id = Model.ShopID })
+        </div>
+        @Html.ActionLink("Quản lí shop", "Index")*@
+
+</p>

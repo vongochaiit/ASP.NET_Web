@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/vendor/fontawesome-free/css/all.min.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i")" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="@Url.Content("~/css/sb-admin-2.min.css")" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/main.css")">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+
+
+@if (Session["UserID"] != null && Session["Role"].ToString() == "")
+{
+
+<body id="page-top">
+
+
+    <div id="wrapper" style="margin-top:-50px;">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Trang Chu<sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Shops")">
+                    <i class="fas fa-store-alt"></i>
+                    <span>Quản lý cửa hàng</span>
+                </a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Users")">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý người dùng</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "CategoryProducts")">
+                    <i class="fab fa-product-hunt"></i>
+                    <span>Quản lý loại sản phẩm</span>
+                </a>
+            </li>
+            @*<li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Products")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Quản sản phẩm</span>
+                </a>
+            </li>*@
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "OrderDetails")">
+                    <i class="fab fa-jedi-order"></i>
+                    <span>Quản lý đơn đặt hàng</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Cities")">
+                    <i class="fas fa-city"></i>
+                    <span>Quản lý Tỉnh/Thành phố</span>
+                </a>
+            </li>
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <div class="container body-content">
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <div>
+                        <i style="float:left;" class="fa fa-user" aria-hidden="true"></i>
+                        <p style="float:left;margin-left:5px">@Session["UserName"].ToString()</p> 
+                            <a class="btn btn-danger" style="float:left; margin:-5px 0 0 10px" href="@Url.Action("Logoff", "Home")">Đăng Xuất</a>
+
+
+                    </div>
+
+                </nav>
+                
+                @RenderBody()
+            </div>
+
+
+        </div>
+
+    </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+}
+else
+{
+
+    <body>
+
+
+        <div class="container-fluid" style="background:#fff">
+            <div class="title fixed-top">
+                <div class="container">
+                    <div class="title-top">
+                        <a href="@Url.Action("Index", "Home")" >
+                            <div class="logo" style="width:230px">
+                                <h3>BlueShop</h3>
+                                <img src="https://static.proship.vn/uploads/news/2015/06/12/Proship.VN_1434098479.133.png">
+                              
+                            </div>
+                        </a>
+                        <div class="search_box" style="margin-left:20px;">
+                            <form action="@Url.Action("ListName", "Products")">
+                                <input class="form-control form-control-sm col-md-3"aria-label="Search"  name="key"   style="float:left;margin-top:3px"><button href="#!" class="btn btn-dark btn-md my-0 ml-sm-2" type="submit">Tim kiếm</button>
+                            </form>
+                        </div>
+                        <div class="menu-top" style="width:400px; margin-top:-30px" >
+                            <ul class="navbar-nav justify-content-end navbar-expand-sm">
+
+                                @if (Session["UserID"] != null)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="@Url.Action("Create", "Shops")"><i class="fas fa-store-alt"></i>Bán hàng cùng Blue</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="@Url.Action("IndexOredr", "Home")"><i class="fa fa-podcast"></i> Theo dõi đơn hàng</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+
+                                    </li>
+                                }
+
+                                @if (Session["UserID"] == null)
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#"><i class="fa fa-user-o"></i> Đăng nhập tài khoản</a>
+                                        <div class="dropdown-content">
+                                            <a class="dropdown-item " style="background:green;" id="" href="@Url.Action("Login", "Home")">Đăng nhập</a>
+                                            <a class="dropdown-item" style="background: gray;" href="@Url.Action("Create", "Users")">Tạo tài khoản</a>
+
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link " href="#"><i class="fa fa-user-o"></i> @Session["UserName"].ToString()</a>
+                                        <div class="dropdown-content">
+                                            <a class=" dropdown-item" href="@Url.Action("Logoff", "Home")">Đăng Xuất</a>
+
+
+                                        </div>
+                                    </li>
+                                }
+
+
+                            <li class="nav-item">
+                                @if (Session["UserID"] == null)
+                                {
+                                    <a class="nav-link " href="@Url.Action("Login", "Home")"><i class="fa fa-cart-arrow-down"></i> Giỏ hàng</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link " href="@Url.Action("checkout", "Home")"><i class="fa fa-cart-arrow-down"></i> Giỏ hàng</a>
+                                }
+
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="title-bottom">
+                        <ul class="navbar-nav justify-content-end navbar-expand-sm">
+                            <li class="nav-item">
+                                <a class="nav-link " href="#"><i class="fa fa-reorder"></i> Danh mục sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-map-marker" style="color:red"></i>  Bạn muốn giao hàng tới đâu?</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                @if (Session["UserID"] != null)
+                                {
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Shops")"><i class="fa fa-user-o"></i>Cửa hàng của bạn</a>
+                                }
+
+                                <div class="dropdown-content">
+
+
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><img style="width: 40px;height: 30px;" src="https://static.proship.vn/uploads/news/2015/06/12/Proship.VN_1434098479.133.png">    Giao nhanh hàng trăm nghìn sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-award" style="color:red"></i>  Tất cả sản phẩm 100% sản phẩm chính hiệu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="#"><i class="fa fa-shopping-basket" style="color:red"></i>  30 ngày đổi trả dễ dàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container body-content">
+                <div class="content">
+
+                   
+
+
+                </div>
+                
+                @RenderBody()
+
+
+            </div>
+
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+
+    </body>
+}
+
+</html>
+<script src="~/Controllers/BaseControlle.js"></script>
+<script type="text/javascript">
+    $('.ajax-link').click(function (e) {
+        var a_href = $(this).attr('href');
+        e.preventDefault();
+        $.ajax({
+            url: a_href,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $('.body-content').prepend(data);
+                $('#deleteModal').modal('show');
+
+            }
+        });
+    });
+
+    $('#asd').removeClass("collapse");
+    $('#asd').delay(1500).slideUp(500);
+
+</script>

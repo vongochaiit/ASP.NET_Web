@@ -1,0 +1,79 @@
+﻿@model BlueShop.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <style>
+      
+            img:hover {
+                -ms-transform: scale(1.3); /* IE 9 */
+                -webkit-transform: scale(1.3); /* Safari 3-8 */
+                transform: scale(1.3);
+            }
+            .col-md-6{
+                  float: left;
+                }
+.col-md-6 h4{
+ 
+  padding-top: 20%;
+}
+    </style>
+@using (@Html.BeginForm())
+{
+
+    <div class="container" >
+
+       
+
+        <div class="col-lg-8 col-md-8 col-sm-8" style="margin:0 auto;height:500px;margin-top:100px">
+
+
+            <div>
+                <div class="col-md-6">
+
+                    <img src="@Url.Content(Model.Image)" width="250" height="250" multiple style="padding: 50px;transition: transform .2s;width: 400px;height: 400px;margin: 0 auto;" />
+                </div>
+                <div class="col-md-6">
+                    <h4>@Html.DisplayFor(model => model.Name)</h4>
+                    <p>Giá: @string.Format("{0:0,0}", Model.Price)  Đ</p>
+                    <p>Tiết kiệm 25%</p>
+                    <p> @Html.DisplayFor(model => model.Desciption)</p>
+                    <p>
+                       Loại sản phẩm: 
+
+                        @Html.DisplayFor(model => model.CategoryProduct.Desciption)
+                    </p>
+                    <p> Tên shop:
+                    @Html.DisplayFor(model => model.Shop.NameShop)</p>
+                </div>
+
+
+
+
+
+            </div>
+
+            <input type="number" name="qty" value="1" id="qty" min="1" max="@Html.DisplayFor(model => model.Count)" />
+            @if (Session["UserID"] == null)
+            {
+                <a class="btn btn-danger" id="" href="@Url.Action("Login", "Home")">Thêm vào giỏ hàng</a>
+            }
+            else
+            {
+                <input type="submit" value="Thêm vào giỏ hàng" class="btn btn-danger " />
+            }
+
+
+
+        </div>
+
+
+
+  
+
+
+    </div>
+    
+}
+

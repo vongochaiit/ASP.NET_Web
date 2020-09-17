@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "LoggedIn";
+}
+<h2 style="text-align:center">Quản Lý Người Dùng</h2>
+
+@if (Session["UserID"] != null && Session["Role"].ToString() == "")
+{
+    @model IEnumerable<BlueShop.Models.User>
+    using (Html.BeginForm())
+    {
+        <div class="form-group accordion">
+            <div class="form-group col-md-4" style="float:left">
+                <label class="control-label col-md-5" style="float:left;padding-top:12px" for="Name">Tên người dùng:</label>
+                @Html.TextBox("SearchName", "", new { @class = "form-control ", @placeholder = "Nhập tên người dùng", style = "float:left" })
+            </div>
+            <div class="form-group col-md-4" style="float:left">
+                <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">Ngày sinh:</label>
+                @Html.TextBox("SearchNgaysinh", "", new { @class = "form-control ", @placeholder = "Nhập ngày sinh", style = "float:left" })
+            </div>
+            <div class="form-group col-md-4" style="float:left">
+                <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">Số điện thoại:</label>
+                @Html.TextBox("SDT", "", new { @class = "form-control ", @placeholder = "Nhập số điện thoại", style = "float:left" })
+            </div>
+            <div class="form-group col-md-4" style="float:left">
+                <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">CMND:</label>
+                @Html.TextBox("Cmnd", "", new { @class = "form-control ", @placeholder = "Nhập CMND", style = "float:left" })
+            </div>
+            <div class="form-group col-md-4" style="float:left">
+                <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">Tên tài khoản:</label>
+                @Html.TextBox("taikhoan", "", new { @class = "form-control ", @placeholder = "Nhập tên tài khoản", style = "float:left" })
+            </div>
+            <div class="form-group col-md-6" style="float:left;margin-top:40px">
+                <label class="control-label col-md-5" style="float:left;padding-top:12px" for="Name">Tỉnh/Thành phố:</label>
+                @Html.DropDownList("CountryId", ViewBag.CountryId as SelectList, "Tỉnh/TP", htmlAttributes: new { @class = "form-control btn btn-primary  col-md-4", style = "float:left" })
+            </div>
+            <div class="form-group col-md-4" style="float:left;margin-top:40px">
+                <label class="control-label col-md-5" style="float:left;padding-top:12px" for="Name">Tỉnh/Thành phố:</label>
+                @Html.DropDownList("CityId", ViewBag.CityId as SelectList, "Tỉnh/TP", htmlAttributes: new { @class = "form-control btn btn-primary  col-md-4", style = "float:left" })
+            </div>
+            <div style="width: 55%;margin-bottom:2%">
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+
+            </div>
+        </div>
+    }
+    <table class="table table-bordered" style="text-align:center;">
+        <tr>
+            <th>
+                Họ tên
+            </th>
+
+            <th>
+                Ngày Sinh
+            </th>
+            <th>
+                Số Điện Thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                CMND
+            </th>
+            <th>
+                Tỉnh/Thành Phố
+            </th>
+            <th>
+                Tên Tài Khoản
+            </th>
+            <th>
+                <i class="fas fa-trash-alt">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMNN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.NameCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    <a class="ajax-link btn btn-danger " href="@Url.Action("Delete", new { id = item.UserID })"> <i class="fas fa-trash-alt"></i></a>
+                    
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+@section Scripts{
+    <script type="text/javascript">
+       $(document).ready(new function () {
+        $("#CountryId").change(function () {
+            var countryid = $('#CountryId').val();
+            $('#CityId').html('');
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("BindCity", "Users")',
+
+                data: { "CountryId": countryid },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc
+
+            });
+
+
+            function successFunc(data, Offices) {
+
+                var items = '<option>Quận/Huyện</option>';
+                $.each(data, function (i, city) {
+                    items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                });
+                $('#CityId').html(items);
+
+            }
+        });
+        });
+    </script>
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BlueShop.Models.OrderDetail>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center;margin-top: 100px;margin-bottom:50px;color:#0026ff">Danh sách đơn hàng của bạn</h2>
+
+
+<table class="table table-bordered" style="text-align:center;">
+    <tr>
+        <th>
+            Tên Shop
+        </th>
+        <th>
+            Tên Sản Phẩm
+        </th>
+        <th>
+            Số Lượng Sản Phẩm
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Mã Đặt Hàng
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+        <th>Hành Động</th>
+        @*<th>
+                <i class="fas fa-trash-alt">
+            </th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Shop.NameShop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityOrdered)
+            </td>
+            <td>
+                @string.Format("{0:0,0}", item.Price)
+                @*@Html.DisplayFor(modelItem => item.Price)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.ShopID }) |O*@
+                @*@Html.ActionLink("Details", "EditOrder", new { id = item.OrderDetailsID }) |
+                    @Html.ActionLink("Delete", "DeleteOrder", new { id = item.OrderDetailsID })*@
+                <a class="btn btn-info  ajax-link" href="@Url.Action("EditOrder", new {id = item.OrderDetailsID})"> <i class="fas fa-eye"></i></a>
+                <a class="ajax-link btn btn-danger " href="@Url.Action("DeleteOrder", new { id = item.OrderDetailsID})"> <i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>

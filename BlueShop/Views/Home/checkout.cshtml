@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+
+<h2 style="text-align:center;color:#0094ff;margin-top:100px;margin-bottom:50px">Danh sách giỏ hàng</h2>
+
+@if (TempData["cart"] != null)
+{
+
+<div style="width:100%;margin:0 auto">
+    <table class="table-bordered table-hover" style="width:100%;text-align:center">
+
+        <thead>
+            <tr>
+
+                <th>Tên sản phẩm</th>
+                <th>Tên cửa hàng</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Hóa đơn</th>
+                <th>Hình ảnh</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in TempData["cart"] as List<BlueShop.Models.cart>)
+            {
+                <tr>
+                    <td >@item.Name</td>
+                    <td>@item.ShopName</td>
+                    <td>@item.qty</td>
+                    <td>@string.Format("{0:0,0}", item.Price) Đ</td>
+                    <td>@string.Format("{0:0,0}", item.bill) Đ</td>
+                    <td><img class="card-img-top" src="@Url.Content(item.Image)" style="width:100px;height:100px"></td>
+                    <td>
+                        <a class="btn btn-success trash" href="@Url.Action("checkout1", new {shopid=item.ShopID })"> <i class="fas fa-check"></i></a>
+                 
+                        <a class="btn btn-danger " href="@Url.Action("remove", new {id=item.ProductID })"> <i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+else
+{
+    <h2 style="color:red">Giỏi hàng của bạn chưa có sản phẩm nào...!</h2>
+    <button class="btn btn-outline-info">  @Html.ActionLink("Trở về trang chủ", "Index", "Home")</button> 
+}
+
+

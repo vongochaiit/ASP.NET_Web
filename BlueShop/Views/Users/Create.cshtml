@@ -1,0 +1,168 @@
+﻿@model BlueShop.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm())
+
+{
+
+    @Html.AntiForgeryToken()
+
+
+    <h4 style="font-family:'Times New Roman';padding-top:10px;color:#000;text-align:center;font-weight: bold;">
+        Tạo Tài Khoản</h4">
+
+        <div class="form-horizontal">
+
+            <hr style="height:1px;background:#000;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="khung col-md-12" style="width:70%;height:580px;border-radius:5px;margin:0 auto;">
+                <div class="box1 col-md-6" style="width:50%;height:100%;float:left;font-size:16px;border-radius:5px;">
+                    <div class="form-group" style="text-align:left;margin-top:5%">
+                        <label class="control-label col-md-10" for="LastName">Tên *:</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="FirstName">Họ *:</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="BirthDay">Ngày sinh *:</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "form-control datepicker", @id = "datepicker" } })
+                            @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="Phone">Số điện thoại *:</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="Email">Email *:</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="box1 col-md-6" style="width:50%;height:100%;float:left;font-size:16px;border-radius:5px;">
+                    <div class="form-group" style="text-align:left;margin-top:5%">
+                        <label class="control-label col-md-10" for="CMND" style="margin-left:65px">CMND *:</label>
+                        <div class="col-md-10" style="margin-left:65px">
+                            @Html.EditorFor(model => model.CMNN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CMNN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="CityID" style="margin-left:65px">Tỉnh, Thành phố *:</label>
+                        <div class="col-md-10" style="margin-left:65px">
+                            @Html.DropDownList("CountryID", null,"Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control",@required = "Required" })
+                            @Html.ValidationMessageFor(model => model.City.CountryID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="CityID" style="margin-left:65px">Quận/Huyện *:</label>
+                        <div class="col-md-10" style="margin-left:65px">
+                            @Html.DropDownList("CityID", null,"Quận/Huyện", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="UserName" style="margin-left:65px">Tên tài khoản *:</label>
+                        <div class="col-md-10" style="margin-left:65px">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align:left;">
+                        <label class="control-label col-md-10" for="PassWord" style="margin-left:65px">Mật khẩu *:</label>
+                        <div class="col-md-10" style="margin-left:65px">
+                            @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5" style="margin-left:11%;margin-top:50px;">
+                        <div style="border-radius:5px">
+                            <button type="submit" class="btn btn-success ">Tạo tài khoản</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+       $(document).ready(new function () {
+        $("#CountryID").change(function () {
+            var countryid = $('#CountryID').val();
+            $('#CityID').html('');
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("BindCity", "Users")',
+
+                data: { "CountryID": countryid },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc
+
+            });
+
+
+            function successFunc(data, Offices) {
+
+                var items = '<option>Quận/Huyện</option>';
+                $.each(data, function (i, city) {
+                    items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                });
+                $('#CityID').html(items);
+
+            }
+        });
+        });
+        </script>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>

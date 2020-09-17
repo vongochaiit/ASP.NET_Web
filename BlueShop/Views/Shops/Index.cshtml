@@ -1,0 +1,131 @@
+﻿@model IEnumerable<BlueShop.Models.Shop>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center;margin-top:100px;color:cornflowerblue;">Quản lí cửa hàng</h2>
+@if (Session["UserID"] != null && Session["Role"].ToString() == "")
+{
+    using (Html.BeginForm())
+    {
+        <div class="form-group accordion">
+            <div class="form-group col-md-6" style="float:left">
+                <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">Tên cửa hàng:</label>
+                @Html.TextBox("SearchName", "", new { @class = "form-control ", @placeholder = "Nhập tên cửa hàng", style = "float:left" })
+            </div>
+            <div class="form-group col-md-6" style="float:left">
+                <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">Đia chỉ:</label>
+                @Html.TextBox("SearchDiachi", "", new { @class = "form-control ", @placeholder = "Nhập địa chỉ", style = "float:left" })
+            </div>
+            <div class="form-group col-md-6" style="float:left;margin-top:40px">
+                <label class="control-label col-md-5" style="float:left;padding-top:12px" for="Name">Tỉnh/Thành phố:</label>
+                @Html.DropDownList("CountryId", ViewBag.CountryId as SelectList, "Tỉnh/TP", htmlAttributes: new { @class = "form-control btn btn-primary  col-md-4", style = "float:left" })
+            </div>
+            <div class="form-group col-md-6" style="float:left;margin-top:40px">
+                <label class="control-label col-md-5" style="float:left;padding-top:12px" for="Name">Quân/Huyện:</label>
+                @Html.DropDownList("CityId", ViewBag.CityId as SelectList, "Quận/Huyện", htmlAttributes: new { @class = "form-control btn btn-primary  col-md-4", style = "float:left" })
+            </div>
+
+            <div style="width: 55%;margin-bottom:2%">
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p class="btn btn-dark col-md-2">
+        @Html.ActionLink("Tạo cửa hàng mới", "Create")
+    </p>
+}
+
+
+@*<p>
+        @Html.ActionLink("Tạo Loại sản phẩm", "Create","CategoryProducts")
+    </p>*@
+<table class="table table-bordered" style="text-align:center;">
+    <tr>
+        <th>
+            Tên Cửa Hàng
+        </th>
+        <th>
+            Chủ Cửa Hàng
+        </th>
+        <th>
+            Địa Chỉ
+        </th>
+
+        <th>
+            Quận/Huyện
+        </th>
+        <th>Thao Tác</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NameShop)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.User.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.City.NameCity)
+    </td>
+    <td>
+        @if (Session["Role"].ToString() == "1")
+        {
+            <a class="ajax-link btn btn-primary " href="@Url.Action("Edit", new {id=item.ShopID })"> <i class="fas fa-edit"></i></a>
+            <a class="btn btn-info  " href="@Url.Action("Details", new {id=item.ShopID })"> <i class="fas fa-eye"></i></a>
+        }
+
+        <a class="ajax-link btn btn-danger " href="@Url.Action("Delete", new {id=item.ShopID })"> <i class="fas fa-trash-alt"></i></a>
+
+
+    </td>
+</tr>
+    }
+
+</table>
+
+@section Scripts{
+ <script type="text/javascript">
+       $(document).ready(new function () {
+        $("#CountryId").change(function () {
+            var countryid = $('#CountryId').val();
+            $('#CityId').html('');
+           
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("BindCity", "Shops")',
+               
+                data: { "CountryId": countryid },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc
+             
+            });
+          
+
+            function successFunc(data, Offices) {
+          
+                var items = '<option>Quận/Huyện</option>';
+                $.each(data, function (i, city) {
+                    items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                });
+                $('#CityId').html(items);
+             
+            }
+        });
+        });
+    </script>
+}

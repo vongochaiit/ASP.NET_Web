@@ -1,0 +1,40 @@
+﻿@model BlueShop.Models.City
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="font-family:'Times New Roman';padding-top:10px;color:#0094ff;text-align:center;font-weight: bold;">
+            Tạo quận/huyện</h4">
+
+            <hr style="height:1px;background:#000;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group" style="text-align:left;margin-top:2%;;font-size:16px;">
+                <label class="control-label col-md-10" for="CountryID" style="margin-left:38%">Tỉnh/TP:</label>
+                <div class="col-md-10" style="margin-left:38%">
+                    @Html.DropDownList("CountryID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="text-align:left;margin-top:2%;;font-size:16px;">
+                <label class="control-label col-md-10" for="NameCity" style="margin-left:38%">Thành phố:</label>
+                <div class="col-md-10" style="margin-left:38%">
+                    @Html.EditorFor(model => model.NameCity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NameCity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin-left:8%;">
+                    <input type="submit" value="Tạo mới" class="btn btn-secondary" />
+                </div>
+            </div>
+    </div>
+}
+

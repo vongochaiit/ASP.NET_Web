@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BlueShop.Models.Product>
+@{
+    ViewBag.Title = "IndexProduct";
+}
+
+
+<div class="row" style="margin-bottom:50px;">
+    <h4 style="float:left;width:100%;margin-top:30px;color:#0094ff;text-align:center;font-size:40px"><b>Sản phẩm của cửa hàng</b></h4>
+    @foreach (var item in Model)
+    {
+        <div class="box3" style="margin: 0 auto; ">
+
+
+
+            <div class="card" style="width: 25rem;float:left;height:600px;margin: 15px 0 0 15px;">
+                <img class="card-img-top" src="@Url.Content(item.Image)" alt="Card image cap" style="height:70%">
+                <div class="card-body" style="margin-left">
+                    <div style="margin-left:20%">
+                        <div><a class="card-title" href="" title="">Tên Sản Phẩm: @item.Name</a></div>
+                        <div><a class="card-title" href="" title="">Tên Shop: @item.Shop.NameShop</a></div>
+                        <p><a class="disabled" href=""></a> <a class="enable" href="">Giá: @string.Format("{0:0,0}", item.Price)đ</a></p>
+                    </div>
+                    <div style="margin-left:7%">
+                        <button type="button" class="btn btn-outline-danger">@Html.ActionLink("Chỉnh Sửa Sản Phẩm", "EditProduct", new { id = item.ProductID })</button>
+              
+                        <a class="btn btn-outline-danger ajax-link " href="@Url.Action("DeleteProduct", new { id = item.ProductID})"> Xóa Sản Phẩm</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>

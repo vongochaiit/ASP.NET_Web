@@ -1,0 +1,387 @@
+﻿.container-fluid {
+    background: #f4f4f4;
+    height: auto;
+}
+
+.title {
+    background: #185eff;
+}
+
+    .title .title-top {
+        height: 50px;
+    }
+
+        .title .title-top .logo {
+            width: 50%;
+            float: left;
+        }
+
+            .title .title-top .logo h3 {
+                color: white;
+                font-weight: 800;
+                font-style: italic;
+                float: left;
+            }
+
+            .title .title-top .logo img {
+                width: 60px;
+                float: left;
+                height: 40px;
+            }
+
+.input-group {
+    width: 350px;
+    float: left;
+    padding-top: 5px;
+}
+
+    .input-group input {
+        border: 1px solid black;
+        font-size: 10px;
+        float: left;
+    }
+
+    .input-group span {
+        border: 1px solid black;
+        font-size: 13px;
+        float: left;
+    }
+
+.input-group-append {
+    height: 34px;
+}
+
+.title .title-top .menu-top {
+    width: 50%;
+    float: right;
+}
+
+    .title .title-top .menu-top ul {
+        margin: 0;
+        padding: 0;
+    }
+
+        .title .title-top .menu-top ul li {
+            width: 140px;
+        }
+
+            .title .title-top .menu-top ul li a {
+                font-size: 12px;
+                color: white;
+                text-align: center;
+            }
+
+                .title .title-top .menu-top ul li a:hover {
+                    color: black;
+                }
+
+                .title .title-top .menu-top ul li a i {
+                    font-size: 18px;
+                }
+
+        .title .title-top .menu-top ul .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .title .title-top .menu-top ul .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #66ccff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1010;
+            border-radius: 12px;
+        }
+
+            .title .title-top .menu-top ul .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                font-size: 12px;
+                background: red;
+                text-align: center;
+            }
+
+                .title .title-top .menu-top ul .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .title .title-top .menu-top ul .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+.title .title-bottom {
+    /*float: left;*/
+    height: 60px;
+}
+
+    .title .title-bottom ul {
+        margin: 0;
+        float: left;
+    }
+
+        .title .title-bottom ul li {
+            width: 190px;
+        }
+
+            .title .title-bottom ul li a {
+                color: white;
+                font-size: 13px;
+            }
+
+                .title .title-bottom ul li a:hover {
+                    color: black;
+                }
+
+        .title .title-bottom ul .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .title .title-bottom ul .dropdown-content {
+            display: none;
+            position: absolute;
+            
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1010;
+            border-radius: 12px;
+        }
+
+            .title .title-bottom ul .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                font-size: 12px;
+              
+                text-align: center;
+            }
+
+                .title .title-bottom ul .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .title .title-bottom ul .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+.container {
+    width: 1400px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.content {
+    background: #f2f2f2;
+    margin-top: 5%;
+}
+
+.box1 {
+    height: 600px;
+    margin-bottom:1%;
+}
+
+    .box1 .left {
+        float: left;
+    }
+
+        .box1 .left a {
+            font-size: 12px;
+            color: black;
+        }
+
+            .box1 .left a:hover {
+                color: #808080;
+            }
+
+    .box1 .between {
+        height: 350px;
+        float: left;
+    }
+
+        .box1 .between .top img {
+            height: 350px;
+        }
+
+        .box1 .between .top .d-none {
+            text-align: right;
+            margin-bottom: -20px;
+        }
+
+        .box1 .between .bottom1 {
+            width: 50%;
+            float: left;
+            position: relative;
+        }
+
+            .box1 .between .bottom1 .img {
+                width: 100%;
+                height: 180px;
+                display: block;
+                width: 100%;
+            }
+
+            .box1 .between .bottom1 .overlay {
+                position: absolute;
+                bottom: 0;
+                background: rgb(0, 0, 0);
+                background: rgba(0, 0, 0, 0.5); /* Black see-through */
+                color: #f1f1f1;
+                width: 100%;
+                transition: .5s ease;
+                opacity: 0;
+                font-size: 20px;
+                padding: 10px;
+                /*text-align: center;*/
+            }
+
+                .box1 .between .bottom1 .overlay button {
+                    color: white;
+                    text-decoration: none;
+                }
+
+            .box1 .between .bottom1:hover .overlay {
+                opacity: 1;
+            }
+
+            .box1 .between .bottom1 .hero-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                float: left;
+                margin-top: -23%;
+                font-family: all;
+            }
+
+    .box1 .right {
+        float: left;
+       
+        height: 450px;
+    }
+
+        .box1 .right .image {
+            width: 50%;
+            float: left;
+            height: 187px;
+        }
+
+            .box1 .right .image img {
+                width: 100%;
+                height: 150px;
+            }
+
+                .box1 .right .image img:hover {
+                    animation: shake 0.5s;
+                    animation-iteration-count: infinite;
+                }
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+
+
+.box3 {
+    background: white;
+    
+}
+
+    .box3 .card-group .card:hover {
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .box3 .card-group .card .card-body a {
+        text-decoration: none;
+    }
+
+    .box3 .card-group .card .card-body .iconstar {
+        color: #f1c40f;
+    }
+
+.box4 {
+    margin: 10px 0 10px 0;
+}
+
+    .box4 .carousel-control-prev-icon {
+        background-image: url(../images/previous-32.png);
+        width: 32px;
+        height: 32px;
+    }
+
+    .box4 .carousel-control-next-icon {
+        background-image: url(../images/next-32.png);
+        width: 32px;
+        height: 32px;
+    }
+
+.carousel-item .d-block {
+    float: left;
+    height: 150px;
+    width: 168px;
+    margin: 0 10px;
+}
+.box5 {
+    background: #ffffff;
+}
+.box5 .a h5{
+    color: blue;
+    font-size:15px;
+}
+.box5 .a .hotline{
+    color:blue;
+    word-break:break-all;
+}
+.box5 .a ul li a{
+    color:black;
+    cursor: default;
+}

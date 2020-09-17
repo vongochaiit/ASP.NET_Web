@@ -1,0 +1,137 @@
+﻿@model BlueShop.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+    <div style="margin-top:8%">
+        <h2>Thêm sản phẩm mới</h2>
+
+        @using (Html.BeginForm("CreateProduct", "Shops", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr style="height:1px;background:#000;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="khung col-md-12" style="width:70%;border-radius:5px;margin:0 auto;">
+                    <div class="box1 col-md-6" style="width:50%;height:100%;float:left;font-size:16px;border-radius:5px;">
+                        <div class="form-group" style="text-align:left;margin-top:5%">
+                            <label class="control-label col-md-10" for="CategoryProductID">Danh mục sản phẩm*:</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("CategoryProductID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryProductID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align:left;margin-top:5%">
+                            <label class="control-label col-md-10" for="Name">Tên sản phẩm*:</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align:left;margin-top:5%">
+                            <label class="control-label col-md-10" for="Desciption">Mô tả:</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Desciption, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Desciption, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align:left;margin-top:5%">
+                            <label class="control-label col-md-10" for="Price">Giá Tiền*:</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box1 col-md-6" style="width:50%;height:100%;float:left;font-size:16px;border-radius:5px;">
+                        <div class="form-group" style="text-align:left;margin-top:5%">
+                            <label class="control-label col-md-10" for="CityID" style="margin-left:65px">Thành phố *:</label>
+                            <div class="col-md-10" style="margin-left:65px">
+                                @Html.DropDownList("CountryID", null, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control", @required = "Required" })
+                                @Html.ValidationMessageFor(model => model.City.CountryID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align:left;margin-top:5%">
+                            <label class="control-label col-md-10" for="CityID" style="margin-left:65px">Quận Huyện *:</label>
+                            <div class="col-md-10" style="margin-left:65px">
+                                @Html.DropDownList("CityID", null, "Quận/Huyện", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align:left;">
+                            <label class="control-label col-md-10" for="Image" style="margin-left:65px">Hình ảnh*:</label>
+                            <div class="col-md-10" style="margin-left:65px">
+                                <input type="file" name="ImageFile" required>
+                                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group" style="text-align:left;">
+                            <label class="control-label col-md-10" for="ShopID" style="margin-left:65px">Cửa hàng:</label>
+                            <div class="col-md-10" style="margin-left:65px">
+                                @Html.DropDownList("ShopID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ShopID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                        <div class="form-group" style="text-align:left;">
+                            <label class="control-label col-md-10" for="Count" style="margin-left:65px">Số lượng*:</label>
+                            <div class="col-md-10" style="margin-left:65px">
+                                @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left:12%;margin-top:50px;float:left">
+                            <div style="border-radius:5px;float:left">
+                                <button type="submit" class="btn btn-secondary ">Tạo Đơn hàng</button>
+                            </div>
+                            <div class="form-group btn btn-outline-info" style="margin-left:50px;float:left">
+                                @Html.ActionLink("Quản lí shop", "Index")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+       $(document).ready(new function () {
+        $("#CountryID").change(function () {
+            var countryid = $('#CountryID').val();
+            $('#CityID').html('');
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("BindCity", "Shops")',
+
+                data: { "CountryID": countryid },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc
+
+            });
+
+
+            function successFunc(data, Offices) {
+
+                var items = '<option>Quận/Huyện</option>';
+                $.each(data, function (i, city) {
+                    items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                });
+                $('#CityID').html(items);
+
+            }
+        });
+        });
+    </script>
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ceebddbc2d31494095f239bea365a139" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopOnlineModel.CategoryProduct" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.City" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Country" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Order" Width="1.5" PointX="9.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.OrderDetail" Width="1.5" PointX="12" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Product" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Shop" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineModel.User" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Product_CategoryProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_City_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Product_City" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_User_City" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Order_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_OrderDetail_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_OrderDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Product_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Shop_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineModel.FK_Shop_City" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

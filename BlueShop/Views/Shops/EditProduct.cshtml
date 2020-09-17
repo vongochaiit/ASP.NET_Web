@@ -1,0 +1,99 @@
+﻿@model BlueShop.Models.Product
+
+@{
+    ViewBag.Title = "EditProduct";
+
+}
+
+<br />
+<h2 style="text-align:center">Chỉnh Sửa Sản Phẩm</h2>
+<hr />
+@*, FormMethod.Post, new { enctype = "multipart/form-data" })*@
+@using (Html.BeginForm("EditProduct", "Shops", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductID)
+
+        <div class="khung col-md-12" style="width:80%;height:100%;border-radius:5px;margin:0 auto;">
+            <div class="box1 col-md-6" style="float:left;">
+                <div class="form-group " style="text-align:left;margin-top:5%">
+                    <label class="control-label col-md-10" for="FirstName">Quận, Huyện</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group" style="text-align:left;">
+                    <label class="control-label col-md-10" for="FirstName">Ảnh</label>
+                    <div class="col-md-10">
+                        <input type="file" name="Image" id="myfile" value="@Model.Image" class="bnt-submit">
+
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group " style="text-align:left;">
+                    <label class="control-label col-md-10" for="FirstName">Số Lượng</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group " style="text-align:left;margin-top:5%">
+                    <label class="control-label col-md-10" for="FirstName"> Danh Mục Sản Phẩm</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("CategoryProductID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CategoryProductID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="box1 col-md-6" style="float:left;margin-top:3%">
+                <div class="form-group " style="text-align:left">
+                    <label class="control-label col-md-10" for="FirstName">Tên Sản Phẩm</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group " style="text-align:left;">
+                    <label class="control-label col-md-10" for="FirstName">Miêu Tả</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Desciption, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Desciption, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group " style="text-align:left;">
+                    <label class="control-label col-md-10" for="FirstName">Giá</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="margin-left:1%;">
+                    <div class="col-md-offset-2 col-md-6" style="float:left">
+                        <input type="submit" value="Chỉnh sửa" class="btn btn-success" />
+                    </div>
+                    <div class="col-md-offset-2 col-md-3 btn btn-outline-info" style="float:left;text-align:center;margin-left:-15%">
+                        @Html.ActionLink("Trở về", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+}
+
+
+@*<script type="text/javascript">
+    $('.btn-success').on('click', function () {
+        let filename = $('.bnt-submit').val();
+        if (filename == null || filename== "") {
+            alert("vui long chon file");
+        }
+    });
+</script>*@

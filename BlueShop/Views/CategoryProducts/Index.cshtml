@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BlueShop.Models.CategoryProduct>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2 style="text-align:center">Loại Sản Phẩm Hiện Có</h2>
+<hr />
+<p>
+    
+    <button type="button" class="btn btn-outline-light">@Html.ActionLink("Thêm loại sản phẩm", "Create")</button>
+</p>
+@using (Html.BeginForm())
+    {
+<div class="form-group accordion">
+    <div class="form-group col-md-12" style="float:left">
+        <label class="control-label col-md-4" style="float:left;padding-top:12px" for="Name">Tên loại sản phẩm:</label>
+        @Html.TextBox("SearchName", "", new { @class = "form-control ", @placeholder = "Nhập tên loại sản phẩm", style = "float:left" })
+    </div>
+
+    <div style="width: 55%;margin-bottom:2%">
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+
+    </div>
+</div>
+    }
+
+<table class="table table-bordered" style="text-align:center;">
+    <tr>
+        <th>
+            Tên Loại Sản Phẩm
+        </th>
+        <th>Thao Tác</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desciption)
+            </td>
+            <td>
+
+                <a class="ajax-link btn btn-danger " href="@Url.Action("Delete", new { id = item.CategoryProductID })"> <i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>

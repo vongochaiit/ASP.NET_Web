@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_ajax.cshtml";
+}
+
+
+
+<body>
+
+    <div class="container body-content">
+        <div class="modal fade" id="deleteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="modal-body">
+                        <h3 style="color:red;">Trường này không thể xóa bởi vì nó đã được sử dụng ở nơi khác !</h3>
+                    </div>
+
+                    <div class="modal-footer">
+                        @using (Ajax.BeginForm("Delete", "Orders", new AjaxOptions { HttpMethod = "POST" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-actions no-color text-center">
+                                
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                            </div>
+                        }
+                    </div><!-- /.modal-footer -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </div>
+
+
+
+</body>
+
+
+
